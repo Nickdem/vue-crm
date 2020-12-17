@@ -18,10 +18,10 @@
                 <td>{{r.date | date('datetime')}}</td>
                 <td>{{r.categoryName}}</td>
                 <td>
-                <span class="white-text badge" :class="[r.typeClass]">{{r.typeText}}</span>
+                <span class="white-text badge" :class="[r.typeClass]">{{r.typeText === 'Доход' ? 'Record_Income' : 'Record_Outcome' | localize}}</span>
                 </td>
                 <td>
-                <button class="btn-small btn" @click="$router.push(`/detail/${r.id}`)" v-tooltip="'Посмотреть запись'">
+                <button class="btn-small btn" @click="$router.push(`/detail/${r.id}`)">
                     <i class="material-icons">open_in_new</i>
                 </button>
                 </td>

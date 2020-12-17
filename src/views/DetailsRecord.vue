@@ -3,9 +3,9 @@
         <Loader v-if="loading" />
         <div v-else-if="record">
             <div class="breadcrumb-wrap">
-            <router-link to="/history" class="breadcrumb">История</router-link>
+            <router-link to="/history" class="breadcrumb">{{'Menu_History' | localize}}</router-link>
             <a @click.prevent class="breadcrumb">
-                {{record.type === 'income' ? 'Доход' : 'Расход'}}
+                {{record.type === 'income' ? 'Record_Income' : 'Record_Outcome' | localize}}
             </a>
             </div>
             <div class="row">
@@ -15,9 +15,9 @@
                     'green': record.type === 'income'
                 }">
                 <div class="card-content white-text">
-                    <p>Описание: {{record.desc}}</p>
-                    <p>Сумма: {{record.amount | currency}}</p>
-                    <p>Категория: {{record.categoryName}}</p>
+                    <p>{{'Record_Desc' | localize}}: {{record.desc}}</p>
+                    <p>{{'History_Amount' | localize}}: {{record.amount | currency}}</p>
+                    <p>{{'History_Category' | localize}}: {{record.categoryName}}</p>
 
                     <small>{{record.date | date('datetime')}}</small>
                 </div>
@@ -41,7 +41,7 @@ export default {
         const record = await this.$store.dispatch('fetchRecordById', id)
         const category = await this.$store.dispatch('fetchCategoryById', record.categoryId)
         this.record = {
-            ...record, categoryName: category.title
+            ...record, categoryName: category.category.title
         }
         
         this.loading = false

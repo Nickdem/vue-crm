@@ -22,7 +22,7 @@
             >
             <label for="password">Пароль</label>
             <small class="helper-text invalid" v-if="$v.password.$dirty && !$v.password.required">Поле Password не должно быть пустым</small>
-            <small class="helper-text invalid" v-else-if="$v.password.$dirty && !$v.password.minLength">{{password.length}}/{{$v.password.$params.minLength.min}} и больше</small>
+            <small class="helper-text invalid" v-else-if="$v.password.$dirty && !$v.password.minLength">Длина пароля - {{password.length}}/{{$v.password.$params.minLength.min}}</small>
             </div>
         </div>
         <div class="card-action">
@@ -54,6 +54,9 @@ export default {
         email: '',
         password: ''
     }),
+    metaInfo: {
+        title: 'Login'
+    },
     validations: {
         email: {
             email, required
